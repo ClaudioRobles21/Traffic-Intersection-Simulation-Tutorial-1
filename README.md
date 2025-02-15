@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![Python version](https://img.shields.io/badge/python-3.1+-blue.svg)](https://www.python.org/downloads/)
+[![Python version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 <h4>A simulation developed from scratch using Pygame to simulate the a traffic intersection having traffic lights with a timer.</h4>
