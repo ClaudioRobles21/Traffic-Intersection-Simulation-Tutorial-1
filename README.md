@@ -1,5 +1,5 @@
 <p align="center">
- <img height=350px src="./simulation-output.png" alt="Simulation output">
+ <img height=350px src="./simulation.png" alt="Simulation output">
 </p>
 
 <h1 align="center">Traffic Intersection Simulation Tutorial - Part 1</h1>
@@ -28,7 +28,7 @@ Find a step-by-step guide to build this simulation [here](https://towardsdatasci
 The video below shows the final output of the simulation.
 
 <p align="center">
-    <img src="./Demo.gif">
+    <img src="./demo.mp4">
 </p>
 
 ------------------------------------------
