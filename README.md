@@ -28,7 +28,7 @@ Find a step-by-step guide to build this simulation [here](https://towardsdatasci
 The video below shows the final output of the simulation.
 
 <p align="center">
-    <img src="./demo.mp4">
+    <img src="./demo.gif">
 </p>
 
 ------------------------------------------
