@@ -25,7 +25,7 @@ Find a step-by-step guide to build this simulation [here](https://towardsdatasci
 ------------------------------------------
 ### Demo
 
-The video below shows the final output of the simulation.
+The video below shows the output of the simulation (before adding vehicles to the intersection).
 
 <p align="center">
     <img src="./demo.gif">
