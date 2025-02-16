@@ -72,6 +72,7 @@ def create_signals():
     return signals
 
 
+# Simulation global variables
 signals = create_signals()
 no_of_signals = 4
 
@@ -92,15 +93,11 @@ def run_simulation():
     Run the simulation again.
     """
     global signals, no_of_signals, current_green, next_green, current_yellow
-    while (
-        signals[current_green].green > 0
-    ):  # while the timer of current green signal is not zero
+    while signals[current_green].green > 0:
         countdown_one_second()
     current_yellow = 1  # set yellow signal on
 
-    while (
-        signals[current_green].yellow > 0
-    ):  # while the timer of current yellow signal is not zero
+    while signals[current_green].yellow > 0:
         countdown_one_second()
     current_yellow = 0  # set yellow signal off
 
