@@ -50,22 +50,22 @@ def create_signals():
 	List[TrafficSignal]: List of TrafficSignal objects
 	"""
 	# Coordinates of signal image, timer, and vehicle count
-	signalCoods = [(530, 230), (810, 230), (810, 570), (530, 570)]
-	signalTimerCoods = [(530, 210), (810, 210), (810, 550), (530, 550)]
+	signal_coordinates = [(530, 230), (810, 230), (810, 570), (530, 570)]
+	timer_coordinates = [(530, 210), (810, 210), (810, 550), (530, 550)]
 
 	ts1 = TrafficSignal(
-		signal_coordinates=signalCoods[0], timer_coordinates=signalTimerCoods[0], red=0
+		signal_coordinates=signal_coordinates[0], timer_coordinates=timer_coordinates[0], red=0
 	)
 	ts2 = TrafficSignal(
-		signal_coordinates=signalCoods[1],
-		timer_coordinates=signalTimerCoods[1],
+		signal_coordinates=signal_coordinates[1],
+		timer_coordinates=timer_coordinates[1],
 		red=ts1.yellow + ts1.green,
 	)
 	ts3 = TrafficSignal(
-		signal_coordinates=signalCoods[2], timer_coordinates=signalTimerCoods[2]
+		signal_coordinates=signal_coordinates[2], timer_coordinates=timer_coordinates[2]
 	)
 	ts4 = TrafficSignal(
-		signal_coordinates=signalCoods[3], timer_coordinates=signalTimerCoods[3]
+		signal_coordinates=signal_coordinates[3], timer_coordinates=timer_coordinates[3]
 	)
 
 	signals = [ts1, ts2, ts3, ts4]
@@ -80,7 +80,7 @@ current_green = 0  # Indicates which signal is green currently
 next_green = (
 	current_green + 1
 ) % no_of_signals  # Indicates which signal will turn green next
-current_yellow = 0  # Indicates whether yellow signal is on or off
+is_yellow = 0  # Indicates whether yellow signal is on or off
 
 
 def run_simulation():
@@ -92,14 +92,14 @@ def run_simulation():
 	Set the next signal as green signal and set the red timer of the next to next signal as (yellow time + green time) of the next signal.
 	Run the simulation again.
 	"""
-	global signals, no_of_signals, current_green, next_green, current_yellow
+	global signals, no_of_signals, current_green, next_green, is_yellow
 	while signals[current_green].green > 0:
 		countdown_one_second()
-	current_yellow = 1  # set yellow signal on
+	is_yellow = 1  # set yellow signal on
 
 	while signals[current_green].yellow > 0:
 		countdown_one_second()
-	current_yellow = 0  # set yellow signal off
+	is_yellow = 0  # set yellow signal off
 
 	# reset all signal times of current signal to default times
 	(
@@ -126,7 +126,7 @@ def countdown_one_second():
 	"""
 	for i in range(0, no_of_signals):
 		if i == current_green:
-			if current_yellow == 0:
+			if is_yellow == 0:
 				signals[i].green -= 1
 			else:
 				signals[i].yellow -= 1
@@ -142,9 +142,9 @@ def main():
 	white = (255, 255, 255)
 
 	# Screensize
-	screenWidth = 1400
-	screenHeight = 800
-	screenSize = (screenWidth, screenHeight)
+	screen_width = 1400
+	screen_height = 800
+	screen_size = (screen_width, screen_height)
 
 	# Font
 	font = pygame.font.Font(None, 30)
@@ -152,13 +152,13 @@ def main():
 	# Setting background image i.e. image of intersection
 	background = pygame.image.load("images/intersection.png")
 
-	screen = pygame.display.set_mode(screenSize)
+	screen = pygame.display.set_mode(screen_size)
 	pygame.display.set_caption("SIMULATION")
 
 	# Loading signal images and font
-	redSignal = pygame.image.load("images/signals/red.png")
-	yellowSignal = pygame.image.load("images/signals/yellow.png")
-	greenSignal = pygame.image.load("images/signals/green.png")
+	red_signal = pygame.image.load("images/signals/red.png")
+	yellow_signal = pygame.image.load("images/signals/yellow.png")
+	green_signal = pygame.image.load("images/signals/green.png")
 
 	thread1 = threading.Thread(
 		name="run_simulation",
@@ -178,18 +178,18 @@ def main():
 		# display signal and set timer according to current status: green, yellow, or red
 		for i in range(0, no_of_signals):
 			if i == current_green:
-				if current_yellow == 1:
+				if is_yellow == 1:
 					signals[i].timer_text = signals[i].yellow
-					screen.blit(yellowSignal, signals[i].signal_coordinates)
+					screen.blit(yellow_signal, signals[i].signal_coordinates)
 				else:
 					signals[i].timer_text = signals[i].green
-					screen.blit(greenSignal, signals[i].signal_coordinates)
+					screen.blit(green_signal, signals[i].signal_coordinates)
 			else:
 				if signals[i].red <= 10:
 					signals[i].timer_text = signals[i].red
 				else:
 					signals[i].timer_text = "---"
-				screen.blit(redSignal, signals[i].signal_coordinates)
+				screen.blit(red_signal, signals[i].signal_coordinates)
 
 			# display signal timer
 			timer_text = font.render(str(signals[i].timer_text), True, white, black)
