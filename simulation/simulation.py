@@ -150,15 +150,15 @@ def main():
 	font = pygame.font.Font(None, 30)
 
 	# Setting background image i.e. image of intersection
-	background = pygame.image.load("images/intersection.png")
+	background = pygame.image.load("simulation/images/intersection.png")
 
 	screen = pygame.display.set_mode(screen_size)
 	pygame.display.set_caption("SIMULATION")
 
 	# Loading signal images and font
-	red_signal = pygame.image.load("images/signals/red.png")
-	yellow_signal = pygame.image.load("images/signals/yellow.png")
-	green_signal = pygame.image.load("images/signals/green.png")
+	red_signal = pygame.image.load("simulation/images/signals/red.png")
+	yellow_signal = pygame.image.load("simulation/images/signals/yellow.png")
+	green_signal = pygame.image.load("simulation/images/signals/green.png")
 
 	thread1 = threading.Thread(
 		name="run_simulation",
